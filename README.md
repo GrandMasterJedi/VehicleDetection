@@ -118,4 +118,4 @@ Here I'll talk about the approach I took, what techniques I used, what worked an
 ## Resources
 * Udacity project assignment and template on [GitHub](https://github.com/udacity/CarND-Vehicle-Detection)
 * Udacity project [rubric](https://review.udacity.com/#!/rubrics/513/view) Points
-
+* Another [vehicle dataset](https://github.com/udacity/self-driving-car/tree/master/annotations) for training 
