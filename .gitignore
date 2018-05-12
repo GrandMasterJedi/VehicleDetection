@@ -2,3 +2,5 @@ image
 .ipynb_checkpoints
 tmp
 __pycache__
+m1
+lectureFunctions.py
