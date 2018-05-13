@@ -1,13 +1,10 @@
 [//]: # (Image References)
-[image1]: ./example/ChessboardCornersCalibration.png "ChessCalibration"
-[image2]: ./example/UndistortedChessboard.png "ChessUndistorted"
-[image3]: ./example/UndistortedLane.png "UndistortedLane"
-[image4]: ./example/ColorGradientFilter.png "ComboGrad"
-[image5]: ./example/WarpedLane.png "WarpLane"
-[image6]: ./example/LanesLineFit2.png "LaneLineFit"
-[image7]: ./output_images/straight_lines1.jpg "outImage1"
-[image8]: ./output_images/test1.jpg "outImage2"
-[video1]: ./videoOutput1.mp4 "Video"
+[image1]: ./example/CarImages.png "car"
+[image2]: ./example/noCarImages.png "noCar"
+[image3]: ./example/HOGlines.png "hog"
+[image4]: ./example/WindowSearchVehicle.png "WinSearch"
+[image5]: ./output_images/test5.jpg "FalsePosFilter"
+[video1]: ./carDetectionVideo.mp4 "Video"
 
 
 # **Vehicle Detection**
@@ -15,23 +12,34 @@
 TO DO
 
 ---
-## Dependencies
+## Dependencies 
+Minimum dependency in parenthesis
 * Python 3.x
 * NumPy
 * OpenCV
-* Matplot.pyplot
+* matplotlib
 * MoviePy
-* glob
-* pickle
-* OS
+* scilit-learn
+* SciPy
+* (glob)
+* (pickle)
+* (time)
+* (OS)
+
+
+
+---
+## Remarks
+* Vehicle training dataset (folder _resource/image/_) is excluded from the repository. It consist of images of vehicles and non vehicles and can be downloaded with the links provided in *Reference*
+* [_functions.py_](functions.py) consists of function definitions provided during the Udacity nanodegree lecture videos. Two functions are corrected to fit my current pipeline: _extractFeatures()_[line 102] and _drawLabeledBboxes()_[line 306]
+
 
 ---
 ## Goals / Steps
 * Perform a Histogram of Oriented Gradients (HOG) feature extraction on a labeled training set of images and train a classifier Linear SVM classifier
-* Optionally, you can also apply a color transform and append binned color features, as well as histograms of color, to your HOG feature vector. 
-* Note: for those first two steps don't forget to normalize your features and randomize a selection for training and testing.
-* Implement a sliding-window technique and use your trained classifier to search for vehicles in images.
-* Run your pipeline on a video stream (start with the test_video.mp4 and later implement on full project_video.mp4) and create a heat map of recurring detections frame by frame to reject outliers and follow detected vehicles.
+* Normalize HOG features and randomize a selection for training and testing.
+* Implement a sliding-window technique and use the trained classifier to search for vehicles in images.
+* Run your pipeline on a video stream and create a heat map of recurring detections frame by frame to reject outliers and follow detected vehicles.
 * Estimate a bounding box for vehicles detected.
 
 
@@ -117,7 +125,7 @@ Here I'll talk about the approach I took, what techniques I used, what worked an
 ---
 ## Resources
 * Udacity project assignment and template on [GitHub](https://github.com/udacity/CarND-Vehicle-Detection)
-* Udacity project [rubric](https://review.udacity.com/#!/rubrics/513/view) Points
-* Additional [vehicle dataset](https://github.com/udacity/self-driving-car/tree/master/annotations) for training 
+* Project [rubric](https://review.udacity.com/#!/rubrics/513/view) Points
 * [Vehicle Dataset](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip)
 * [Non Vehicle Dataset](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip)
+* Additional [vehicle dataset](https://github.com/udacity/self-driving-car/tree/master/annotations) for training 
