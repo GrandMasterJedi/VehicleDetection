@@ -79,10 +79,10 @@ Overall, it seems that higher orientation binning and pixels per cell lead the H
 I trained a Support Vector Machine (SVM) to classify the images into *car* and *noCar* using the sklearn implementation `svm.SVC()`. The code can be found in the last part of section 1 of [_main.ipynb_](main.ipynb), in a subsection termed _Apply Feature Extraction to all images (vehicles and non-vehicles)_.
 
 The images are first standardized by using the Scikit-learn's StandardScaler. In an attempt to choose the best learning model, I split the sample in 2/3 for training and 1/3 for testing. I tried several kernels for the SVM and they yield the following performance on the test set:
-* Prediction accuracy with *polynomial kernel of order 2*:     	0.934
-* Prediction accuracy with *linear kernel* :     				0.953
-* Prediction accuracy with *sigmoid kernel*:    				0.784
-* Prediction accuracy with *radial basis function kernel*:     	0.974
+* Prediction accuracy with *polynomial kernel* of order 2:     | 0.934
+* Prediction accuracy with *linear kernel* :                   | 0.953
+* Prediction accuracy with *sigmoid kernel*:                   | 0.784
+* Prediction accuracy with *radial basis function kernel*:     | 0.974
 
 Therefore, the radial basis function is selected kernel for the SVM.
 
@@ -117,10 +117,10 @@ As a first attempt to reduce false positive and false negative, a heat map is ap
 The shape of the resulting window is basically the rectangle that is the overlapping section of 4 or more hot windows. A final filter on the shape of this resulting window is applied as a sanity check to reduce the number of false negative. The following is implemented in `drawLabeledBboxes()`, line 306 of [_functions.py_](functions.py), excluding strangely shaped windows.
 
 ```python
-    aspectRatio = width / heigth
-    bboxArea = width * heigth
-	if bboxArea < areaMin or aspectRatio > 3 and aspectRatio < 1/2:
-		_NoCarInWindow_
+aspectRatio = width / heigth
+bboxArea = width * heigth
+if bboxArea < areaMin or aspectRatio > 3 and aspectRatio < 1/2:
+	_NoCarInWindow_
 ```	
 
 Here is an example of the pipeline, consisting of sliding windows, heat map and sanity check applied to the test image:
@@ -142,8 +142,8 @@ The sliding window car detection technique is applied to a video clip. Check out
 As the video is a sequence of images, I combine detected car windows from previous sequences of image in an attempt to further improve the detection accuracy. The last section of [_main.ipynb_](main.ipynb) contains a class `cHotWindows()` that keeps in memory previously found hot windows and a function definition `detectCarImSequence()` that detect car window for a current frame by using information from previous frames. The threshold applied to heatmap of car is set to a multiple of number of frames
 
 ```python
-	# Set the threshold based on number of frame and number of window identified
-    heatmapThresh = int(baseheatmapThresh * nFrame)
+# Set the threshold based on number of frame and number of window identified
+heatmapThresh = int(baseheatmapThresh * nFrame)
 ```
 
 
@@ -165,7 +165,7 @@ Finally, I noticed it is relatively more difficult to detect the whole white car
 ---
 ## Resources
 * Udacity project assignment and template on [GitHub](https://github.com/udacity/CarND-Vehicle-Detection)
-* Project [rubric](https://review.udacity.com/#!/rubrics/513/view) Points
-* [Vehicle Dataset](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip)
-* [Non Vehicle Dataset](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip)
+* Project [rubric](https://review.udacity.com/#!/rubrics/513/view) points
+* [Vehicle dataset](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip)
+* [Non-vehicle dataset](https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip)
 * Additional [vehicle dataset](https://github.com/udacity/self-driving-car/tree/master/annotations) for training
